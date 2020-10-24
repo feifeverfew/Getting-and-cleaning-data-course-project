@@ -40,6 +40,6 @@ names(extracted_data)<-gsub("-std()", "STD", names(extracted_data), ignore.case 
 names(extracted_data)<-gsub("-freq()", "Frequency", names(extracted_data), ignore.case = TRUE)
 names(extracted_data)<-gsub("angle", "Angle", names(extracted_data))
 names(extracted_data)<-gsub("gravity", "Gravity", names(extracted_data))
-#question 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+#question 5: from the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 data2nd <- extracted_data %>% group_by(subject, activity) %>% summarise_all(funs(mean))
 write_csv (data2nd, 'data2nd.csv')

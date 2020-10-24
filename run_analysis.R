@@ -23,11 +23,11 @@ x <- rbind (x_train, x_test)
 y <- rbind (y_train, y_test)
 subject <- rbind (subject_train, subject_test)
 all_data <- cbind (subject, y, x)
-# question 2: Extracts only the measurements on the mean and standard deviation for each measurement
+# question 2: extracts only the measurements on the mean and standard deviation for each measurement
 extracted_data <- all_data %>% select (subject, code, contains('mean'), contains ('std'))
 # question 3: uses descriptive activity names to name the activities in the data set; 
 extracted_data <- extracted_data %>% left_join (activities) %>% select (-code)
-# question 4: Appropriately labels the data set with descriptive variable names.
+# question 4: appropriately labels the data set with descriptive variable names.
 names(extracted_data)<-gsub("Acc", "Accelerometer", names(extracted_data))
 names(extracted_data)<-gsub("Gyro", "Gyroscope", names(extracted_data))
 names(extracted_data)<-gsub("BodyBody", "Body", names(extracted_data))

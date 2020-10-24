@@ -50,7 +50,7 @@ The run_analysis.R script gets and cleans data as required by the course project
   
 7. Question-5: from the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
    After groupped by subject and activity, summarized extracted_data to obtains means of each variable to obtain data2nd: tibble [180 × 88]
-   write data2nd into data2nd.csv file. 
+   write data2nd into data2nd.txt file. 
    
 
 

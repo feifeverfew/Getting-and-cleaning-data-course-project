@@ -1,0 +1,58 @@
+---
+title: "codebook"
+output: html_document
+---
+
+The run_analysis.R script gets and cleans data as required by the course project. 
+
+
+1. Download and unzip the dataset:
+   check if file exists. If not, download the file and name as "course3_data.zip". 
+   check if the folder "UCI HAR Dataset" exists. If not, unzip the folder as "UCI HAR Dataset". 
+ 
+2. Read data sets
+   features <- "UCI HAR Dataset/features.txt": tibble (561 X 2)
+   The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tACC-XYZ and tGyro-XYZ.
+   activities <- "UCI HAR Dataset/activity_labels.txt": tibble (6x2)
+   list of actitities performed when the corresponding measurements were taken taken and its code
+   subject_test <- "UCI HAR Dataset/test/subject_test.txt": tibble [2,947 × 1]
+   contains test subjects being observed
+   x_test <- "UCI HAR Dataset/test/X_test.txt": tibble [2,947 × 561]
+   contains recorded features test data
+   y_test <- "UCI HAR Dataset/test/Y_test.txt": tibble [2,947 × 1] 
+   contains test data of activities' code
+   subject_train <- "UCI HAR Dataset/train/subject_train.txt": tibble [7,352 × 1]
+   contains train subjects being observed
+   x_train <- "UCI HAR Dataset/train/X_train.txt": tibble [7,352 × 561]
+   contains recorded features train data
+   y_train <- "UCI HAR Dataset/train/Y_train.txt": tibble [7,352 × 1]
+   contains train data of activities' code
+   
+3. Question-1: merge the training and test data sets to create one data set
+    merge x_train and x_test using rbind() to create x: tibble [10,299 × 561]
+    merge y_train and y_test using rbind() to create y: tibble [10,299 × 1]
+    merge subject_train and subject_test using rbind to create subject: tibble [10,299 × 1]
+    merge subject, y and x using cbind() to create all_data: 'data.frame':	10299 obs. of  563 variables
+
+4. Question-2: extracts only the measurements on the mean and standard deviation for each measurement
+    subset all_data using select (), including columns: subject, code, and the measurements containing "mean" or "std" (standard deviation) to generate extracted_data
+    
+5. Question-3: uses descriptive activity names to name the activities in the data set
+   using left_join() to add activities variable from data frame "activities" to extracted_data based on the common variable code. Remove code from the extracted_data
+
+6. Question-4: appropriately labels the data set with descriptive variable names
+   All Acc in column’s name replaced by Accelerometer
+   All Gyro in column’s name replaced by Gyroscope
+   All BodyBody in column’s name replaced by Body
+   All Mag in column’s name replaced by Magnitude
+   All start with character f in column’s name replaced by Frequency
+   All start with character t in column’s name replaced by Time
+  
+7. Question-5: from the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+   After groupped by subject and activity, summarized extracted_data to obtains means of each variable to obtain data2nd: tibble [180 × 88]
+   write data2nd into data2nd.csv file. 
+   
+
+
+
+
